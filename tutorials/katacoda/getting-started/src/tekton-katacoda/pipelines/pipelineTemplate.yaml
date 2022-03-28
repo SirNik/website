@@ -4,7 +4,20 @@ metadata:
   name: build-test-deploy-app-pipeline
 spec:
   resources:
+    - name: git
+      type: git
     # The input and output resources each task uses
   tasks:
-    # The names of tasks in this pipeline
-    ...
+  # The name of the task in this pipeline
+  - name: build-test-app
+    taskRef:
+      # The name of the task
+      name: build-test-app
+    resources:
+      - name: git
+        resource: git
+  # The name of the task in this pipeline
+  - name: deploy-app
+    taskRef:
+      # The name of the task
+      name: deploy-app
